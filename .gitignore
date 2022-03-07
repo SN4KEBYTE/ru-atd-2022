@@ -1,3 +1,14 @@
+# PyCharm
+.idea/
+
+# MacOS
+.DS_Store
+
+# Data & Results
+data/
+out/
+pl-logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
