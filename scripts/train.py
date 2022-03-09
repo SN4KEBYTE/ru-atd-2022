@@ -83,7 +83,6 @@ if __name__ == '__main__':
     )
 
     train = pd.read_csv(data_dir / 'train.csv')
-    test = pd.read_csv(data_dir / 'test.csv')
     val = pd.read_csv(data_dir / 'val.csv')
 
     le = LabelEncoder().fit(train['Class'].values)
@@ -95,18 +94,14 @@ if __name__ == '__main__':
         val,
         le=le,
     )
-    test = TextDataset(
-        test,
-        le=le,
-    )
 
     batch_size = args.batch_size
     num_epochs = args.epochs
     num_workers = args.num_workers
 
-    tokenizer = BertTokenizer.from_pretrained('sberbank-ai/ruBert-large')
+    tokenizer = BertTokenizer.from_pretrained('sberbank-ai/ruBert-base')
     model = BertClassifier(
-        'sberbank-ai/ruBert-large',
+        'sberbank-ai/ruBert-base',
         num_labels=len(le.classes_),
     )
 
@@ -123,13 +118,6 @@ if __name__ == '__main__':
     )
     val_loader = DataLoader(
         val,
-        batch_size=batch_size,
-        shuffle=False,
-        num_workers=num_workers,
-        collate_fn=collate_with_tokenizer,
-    )
-    test_loader = DataLoader(
-        test,
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
