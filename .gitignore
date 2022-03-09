@@ -8,6 +8,8 @@
 data/
 out/
 pl-logs/
+*.csv
+*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
